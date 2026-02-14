@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="shortcut icon" type="imagex/x-icon" href="../uscs-circle.png">  
+  <title>Cadastro de Funcionários - Clínica Médica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #355ca7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0066ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #e1872f;
+      transition: background-color 0.3s ease;
+    }
+    .error {
+      background-color: #ff3333;
+      font-size: 14px;
+    }
+    .edit {
+      background-color: #0066ff;
+    }
+    .edit:hover {
+      background-color: #e1872f;
+    }
+    .error:hover {
+      background-color: #be1818;
+    }
+    input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      color: #355ca7;
+      font-weight: bold;
+      border-bottom: 3px solid #355ca7;
+    }
+    tbody tr:hover {
+      background-color: #e6f7ff;
+    }
+    .limparTela{
+      background-color: gainsboro;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 150px;
+      margin-left: 80% ;            
+    }
+    .limparTela:hover{
+      background-color: gray;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <fieldset>
+      <h1>Cadastro de Funcionários</h1><button type="button" id="limparTela" class="limparTela"style="">Limpar Tela</button>
+      <hr>
+      <br>
+      <p><strong>* Campos obrigatórios</strong></p>
+      
+      <form id="funcionarioForm">
+        <label for="nome">Nome *</label>
+        <input type="text" id="nome" name="nome" required />
+        
+        <label for="data_nasc">Data de Nascimento *</label>
+        <input type="date" id="data_nasc" name="data_nasc" required />
+        
+      <label for="cpf">CPF *</label>
+      <input type="text" id="cpf" name="cpf" required />
+      
+      <label for="cargo">Cargo *</label>
+      <input type="text" id="cargo" name="cargo" required />
+      
+      <label for="celular">Celular *</label>
+      <input type="text" id="celular" name="celular" required />
+      
+      <button type="submit" id="cadastrar">Cadastrar</button>
+      <button type="button" id="cancelBtn" class="error" style="display: none; margin-top: 10px;">Cancelar</button>
+    </form>
+  </fieldset>
+  <br><hr><br>
+  <fieldset>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Data de Nascimento</th>
+          <th>CPF</th>
+          <th>Cargo</th>
+          <th>Celular</th>
+        </tr>
+      </thead>
+      <tbody id="corpoTab">
+        <!-- Linhas de funcionários vão aqui -->
+      </tbody>
+    </table>
+  </fieldset>
+  </div>
+  <script>
+        document.getElementById("limparTela").addEventListener("click", (event)=>{
+          event.preventDefault();
+          document.getElementById("funcionarioForm").reset();
+        });
+  </script>
+  <script src="funcionarios.js"></script>
+</body>
+</html>

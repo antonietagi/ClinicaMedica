@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="imagex/x-icon" href="../uscs-circle.png">
+    <title>Cadastro de Frota - Clínica Médica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #355ca7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            margin-right: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0066ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            
+        }
+        button:hover {
+            background-color: #e1872f;
+            transition: background-color 0.3s ease;
+
+        }
+        .error {
+            background-color: #ff3333;
+            font-size: 14px;
+        }
+        .edit{
+            background-color: #0066ff;
+        }
+        .edit:hover{
+            background-color: #e1872f;
+            transition: background-color 0.3s ease;
+        }
+        .error:hover {
+            background-color: #be1818;
+            transition: background-color 0.3s ease;
+        }
+        input[type="radio"] {
+            width: auto;
+            margin-right: 5px;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+                border-color: #007bff;
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        tbody tr:hover {
+            background-color: #e6f7ff;
+            transition: background-color 0.3s ease;
+        }
+        tbody{
+            text-align: center;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            max-width: max-content;
+            padding: 3px;
+            text-align: center;
+        }
+        th {
+            color: #355ca7;
+            font-weight: bold;
+            border-bottom: 3px solid #355ca7;
+        }
+        .limparTela{
+            background-color: gainsboro;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 150px;
+            margin-left: 80% ;            
+        }
+        .limparTela:hover{
+            background-color: gray;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <fieldset>
+            
+            <h1>Cadastro de Frota</h1><button type="button" id="limparTela" class="limparTela"style="">Limpar Tela</button>
+            <hr>
+            <br>
+            <p>Campos Obrigatórios (*)</p>
+        <form id="frotaForm">
+            <label for="placa">Placa do Veículo: *</label>
+            <input type="text" id="placa" name="placa" placeholder="Ex: ABC-1234 ou ABC1D23" required>
+            <span class="error" id="placaError"></span>
+            <div>
+                <label for="tipo">Tipo de Veículo: *</label>
+                <label>
+                    <input type="radio" id="Ambulâncias" name="tipo" value="Ambulância" />Ambulâncias
+                </label>
+                <label>
+                    <input type="radio" id="Veículos_pac" name="tipo" value="Veículo_pac" />Veículos de transporte para pacientes
+                </label>
+                <label>
+                    <input type="radio" id="Veículos_admin" name="tipo" value="Veículo_admin" />Veículos de suporte administrativo
+                </label>
+                <label>
+                    <input type="radio" id="Motos" name="tipo" value="Moto" />Motos
+                </label>
+                <label>
+                    <input type="radio" id="Veículos_espec" name="tipo" value="Veículo_espec" />Veículos especializados
+                </label>
+                <span class="error" id="tipoError"></span>
+            </div>
+
+            <label for="marca">Marca: *</label>
+            <input type="text" id="marca" name="marca" placeholder="Digite a marca" required>
+            <span class="error" id="marcaError"></span>
+
+            <label for="modelo">Modelo: *</label>
+            <input type="text" id="modelo" name="modelo" placeholder="Digite o modelo" required>
+            <span class="error" id="modeloError"></span>
+
+            <label for="ano">Ano do Veículo: *</label>
+            <select id="ano" name="ano" required>
+                <option>Ano</option>
+                <option>2025</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+                <option>2021</option>
+                <option>2020</option>
+                <option>2019</option>
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+             </select>
+            <span class="error" id="anoError"></span>
+
+            <label for="km">Quilometragem: *</label>
+            <input type="number" id="km" name="km" placeholder="Ex: 50000" required>
+            <span class="error" id="kmError"></span>
+
+            <button type="submit" id="cadastrar">Cadastrar</button>
+            <button type="button" id="cancelBtn" class="error" style="display: none; margin-top: 10px;">Cancelar</button>
+        </form>
+    </fieldset>
+        <br>
+        <hr>
+        <br>
+        <fieldset>
+            <table id="tabela" >
+                <thead>
+                    <tr>
+                        <th>Placa </th>
+                        <th>Tipo de Veículo </th>
+                        <th>Marca </th>
+                        <th>Modelo </th>
+                        <th>Ano do Veículo </th>
+                        <th>Quilometragem </th>
+                    </tr>
+                </thead>
+                <tbody id="corpoTab"></tbody>
+            </table>
+        </fieldset>
+    </div>
+    <script>
+        document.getElementById("limparTela").addEventListener("click", (event)=>{
+            event.preventDefault();
+            document.getElementById("frotaForm").reset();
+
+        });
+        function validarForm() {
+            event.preventDefault();
+    
+            const form = document.getElementById('frotaForm');
+            const placa = document.getElementById('placa');
+            const tipo = document.getElementById('tipo');
+            const marca = document.getElementById('marca');
+            const modelo = document.getElementById('modelo');
+            const ano = document.getElementById('ano');
+            const regiao = document.getElementById('regiao');
+            const km = document.getElementById('km');
+            const motoristas = document.getElementById('motorista');
+    
+            const placaError = document.getElementById('placaError');
+            const tipoError = document.getElementById('tipoError');
+            const marcaError = document.getElementById('marcaError');
+            const modeloError = document.getElementById('modeloError');
+            const anoError = document.getElementById('anoError');
+            const regiaoError = document.getElementById('regiaoError');
+            const kmError = document.getElementById('kmError');
+            const motoristasError = document.getElementById('motoristaError');
+    
+            let isValid = true;
+    
+            // Limpa mensagens de erro anteriores
+            placaError.textContent = '';
+            tipoError.textContent = '';
+            marcaError.textContent = '';
+            modeloError.textContent = '';
+            anoError.textContent = '';
+            regiaoError.textContent = '';
+            kmError.textContent = '';
+            motoristasError.textContent = '';
+    
+            // Validação da placa
+            const regexPlaca = /^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/; // Formato esperado
+            if (!regexPlaca.test(placa.value)) {
+                placaError.textContent = 'Placa inválida. Deve conter 7 caracteres: AAA1A23.';
+                isValid = false;
+            }
+    
+            // Validação do tipo
+            if (tipo.value === '') {
+                tipoError.textContent = 'Selecione um tipo de veículo.';
+                isValid = false;
+            }
+    
+            // Validação da marca
+            if (marca.value.trim() === '') {
+                marcaError.textContent = 'A marca não pode estar vazia.';
+                isValid = false;
+            }
+    
+            // Validação do modelo
+            if (modelo.value.trim() === '') {
+                modeloError.textContent = 'O modelo não pode estar vazio.';
+                isValid = false;
+            }
+    
+            // Validação do ano
+            if (ano.value.trim() === '') {
+                anoError.textContent = 'O ano deve ser inserido.';
+                isValid = false;
+            }
+    
+            // Validação da região
+            if (regiao.value === '') {
+                regiaoError.textContent = 'Selecione uma região de atuação.';
+                isValid = false;
+            }
+    
+            // Validação da quilometragem
+            if (km.value <= 0 || km.value.trim() === '') {
+                kmError.textContent = 'A quilometragem deve ser maior que 0.';
+                isValid = false;
+            }
+    
+            // Validação dos motoristas
+            if (motoristas.value.trim() === '') {
+                motoristasError.textContent = 'Informe ao menos um motorista.';
+                isValid = false;
+            }
+    
+            // Caso tudo seja válido, submeter
+            if (isValid) {
+                alert("Cadastro realizado com sucesso!");
+                document.getElementById("pacientesform").reset();
+            }
+       
+    
+        // Normaliza a entrada de placa
+        const placaInput = document.getElementById('placa');
+        placaInput.addEventListener('input', () => {
+            let valor = placaInput.value.toUpperCase().replace(/[^A-Z0-9]/g, ''); // Remove caracteres inválidos
+        placaInput.value = valor.slice(0, 7); // Limita a 7 caracteres
+        });
+    };
+    </script>
+    <script src="frota.js"></script>
+</body>
+</html>
